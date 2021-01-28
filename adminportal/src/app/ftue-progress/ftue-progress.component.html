@@ -1,0 +1,54 @@
+<h2>FTUE</h2>
+<div class="row">
+    <div class="col-md-offset-1 col-md-8">
+        <div *ngFor="let ftueStoryProgress of ftueProgress">
+        <h2>
+            '{{ftueStoryProgress.ftueStory}}' FTUE
+        </h2>
+        <form class="form-horizontal" (ngSubmit)="onSubmitStarted(ftueStoryProgress.ftueStory)" #startedForm="ngForm">
+            <div class="form-group">
+
+                <label class="col-sm-3 control-label" for="lastStepStarted">Last Step Started</label>
+                <div class="col-sm-4">
+                    <select class="form-control btn btn-primary" id="lastStepStarted"
+                        required
+                        [(ngModel)]="ftueStoryProgress.lastStepStarted" name="lastStepStarted">
+                        <option *ngFor="let ftueStep of orderedFTUEConfig[ftueStoryProgress.version][ftueStoryProgress.ftueStory]" [ngValue]="ftueStep" [label]="ftueStep"></option>
+                    </select>
+                </div>
+                <div class="col-sm-2" id="setStartedButton">
+                    <button id="setStartedButton" type="submit" class="btn btn-success" [disabled]="startedForm.pristine">Set Last Step Started</button>
+                </div>
+            </div>
+        </form>
+
+        <form class="form-horizontal" (ngSubmit)="onSubmitComplete(ftueStoryProgress.ftueStory)" #completeForm="ngForm">
+            <div class="form-group">
+            <label class="col-sm-3 control-label" for="lastStepComplete">Last Step Complete</label>
+            <div class="col-sm-4">
+                <select class="form-control btn btn-primary" id="lastStepComplete"
+                    required
+                    [(ngModel)]="ftueStoryProgress.lastStepComplete" name="lastStepComplete">
+                    <option *ngFor="let ftueStep of orderedFTUEConfig[ftueStoryProgress.version][ftueStoryProgress.ftueStory]" [ngValue]="ftueStep" [label]="ftueStep"></option>
+                </select>
+            </div>
+            <div class="col-sm-2" id="setCompleteButton">
+                <button id="setCompleteButton" type="submit" class="btn btn-success" [disabled]="completeForm.pristine">Set Last Step Complete</button>
+            </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-8">
+        <form class="form-horizontal" #completeAllForm="ngForm">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="completeAll">Complete Entire FTUE</label>
+                <div class="col-sm-2" id="completeAll">
+                <button id="completeAllButton" type="submit" class="btn btn-danger">Go</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
