@@ -4,18 +4,7 @@
             <h1>User</h1>
         </div>
         <div class="panel-body">
-          <account-info [profile]="portalSync.userProfile"></account-info>
-          <player-errors [entries]="portalSync.logEntries"></player-errors>
-          <iap-receipts [receipts]="portalSync.userIAPReceipts"></iap-receipts>
-          <offer-receipts [receipts]="portalSync.userOfferReceipts"></offer-receipts>
-          <social-accounts [accounts]="portalSync.socialAccounts"></social-accounts>
-          <cars [cars]="portalSync.userCars" [carsMap]="carsMap"></cars>
-          <resources [resources]="portalSync.userResources" [resourceMap]="resourceMap"></resources>
-          <augments [augments]="portalSync.userAugments" [augmentMap]="augmentMap"></augments>
-          <fuel [fuel]="portalSync.fuel"></fuel>
-          <daily-gift [dailyGift]="portalSync.dailyGift"></daily-gift>
-          <ftue-progress [ftueProgress]="portalSync.ftueProgress" [orderedFTUEConfig]="orderedFTUEConfig"></ftue-progress>
-          <fusion-credits [fusionCredits]="portalSync.fusionCredits" [carManufacturerEnumMap]="carManufacturerEnumMap"></fusion-credits>
+          <router-outlet></router-outlet>
         </div>
     </div>
 </div>

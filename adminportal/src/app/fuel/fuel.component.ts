@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Fuel } from '../interfaces/models/Fuel';
+import { PortalSyncService } from '../services/portal-sync.service';
 
 @Component({
   selector: 'fuel',
@@ -10,9 +11,12 @@ export class FuelComponent implements OnInit {
 
   @Input() fuel: Fuel;
 
-  constructor() { }
+  constructor(private portalSyncService: PortalSyncService) { }
 
   ngOnInit(): void {
+    this.portalSyncService.getPortalSync("placeholder", "placeholder", "placeholder").subscribe(portalSyncResponse => {
+      this.fuel = portalSyncResponse.fuel;
+    });
   }
 
 }

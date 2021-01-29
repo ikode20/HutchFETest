@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LogEntry } from '../interfaces/models/LogEntry';
+import { PortalSyncService } from '../services/portal-sync.service';
 
 @Component({
   selector: 'player-errors',
@@ -10,9 +11,12 @@ export class PlayerErrorsComponent implements OnInit {
 
   @Input() entries: LogEntry[];
 
-  constructor() { }
+  constructor(private portalSyncService: PortalSyncService) { }
 
   ngOnInit(): void {
+    this.portalSyncService.getPortalSync("placeholder", "placeholder", "placeholder").subscribe(portalSyncResponse => {
+      this.entries = portalSyncResponse.logEntries;
+    });
   }
 
 }
